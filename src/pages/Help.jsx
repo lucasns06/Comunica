@@ -9,9 +9,9 @@ const Contatos = () => {
         { id: 3, nome: 'Contato 3' },
     ];
     const opcoes = [
-        { id: 1, texto: 'Adicionar' },
-        { id: 2, texto: 'Editar' },
-        { id: 3, texto: 'Excluir' },
+        { id: 4, texto: 'Adicionar' },
+        { id: 5, texto: 'Editar' },
+        { id: 6, texto: 'Excluir' },
     ]
     return (
         <>

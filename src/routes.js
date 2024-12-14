@@ -20,12 +20,13 @@ function TabNavigator() {
     return (
         <Tab.Navigator
             screenOptions={{
+                // animation: 'shift',
                 tabBarActiveTintColor: '#5A76FF',
-                tabBarInactiveTintColor: 'gray',
+                tabBarInactiveTintColor: '#4D4D58',
                 tabBarStyle: {
-                    backgroundColor: '#F1F4FF',
-                    borderTopWidth: 0,
-                    elevation: 10, 
+                    backgroundColor: '#DADDE9',
+                    borderTopWidth: 4,
+                    borderColor: '#DADDE9',
                     height: 60,
                 },
                 contentStyle: {
@@ -40,7 +41,7 @@ function TabNavigator() {
                     tabBarLabel: 'Categorias',
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            style={[styles.icon, { tintColor: focused ? '#5A76FF' : 'gray' }]}
+                            style={[styles.icon, { tintColor: focused ? '#5A76FF' : '#4D4D58' }]}
                             source={require('./images/home.png')}
                         />
                     ),
@@ -57,7 +58,7 @@ function TabNavigator() {
                     tabBarLabel: 'Configurações',
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            style={[styles.icon, { tintColor: focused ? '#5A76FF' : 'gray' }]}
+                            style={[styles.icon, { tintColor: focused ? '#5A76FF' : '#4D4D58' }]}
                             source={require('./images/config.png')}
                         />
                     ),
@@ -75,7 +76,7 @@ function TabNavigator() {
                     tabBarLabel: 'Personalizar',
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            style={[styles.icon, { tintColor: focused ? '#5A76FF' : 'gray' }]}
+                            style={[styles.icon, { tintColor: focused ? '#5A76FF' : '#4D4D58' }]}
                             source={require('./images/personalizar.png')}
                         />
                     ),
@@ -124,7 +125,7 @@ function Routes() {
                 name="tts"
                 component={Tts}
                 options={{
-                    headerTitle: 'tts',
+                    headerTitle: 'Sintese de voz',
                     headerTitleAlign: 'center',
                     headerStyle: styles.headerStyle,
                     headerTintColor: '#4D4D58',

@@ -11,7 +11,7 @@ function Emocoes() {
         { name: "Feliz", image: require('../../images/emocoes/feliz.png') },
         { name: "Triste", image: require('../../images/emocoes/triste.png') },
         { name: "Cansado", image: require('../../images/emocoes/cansado.png') },
-        { name: "Bravo", image: require('../../images/emocoes/bravo.png') }
+        { name: "Bravo", image: require('../../images/emocoes/bravo.png') },
     ];
 
     const openModal = (item) => {
