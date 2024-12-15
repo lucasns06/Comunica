@@ -12,6 +12,7 @@ import Edit from './pages/Edit';
 import Add from './pages/Add';
 import Help from './pages/Help';
 import Tts from './pages/tts';
+import Perfil from './pages/perfil';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -86,6 +87,23 @@ function TabNavigator() {
                     headerTitleStyle: styles.headerTitleStyle,
                 }}
             />
+            <Tab.Screen
+                name="Perfil"
+                component={Perfil}
+                options={{
+                    tabBarLabel: 'Perfil',
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            style={[styles.icon, { tintColor: focused ? '#5A76FF' : '#4D4D58' }]}
+                            source={require('./images/user.png')}
+                        />
+                    ),
+                    headerTitleAlign: 'center',
+                    headerStyle: styles.headerStyle,
+                    headerTintColor: '#4D4D58',
+                    headerTitleStyle: styles.headerTitleStyle,
+                }}
+            />
         </Tab.Navigator>
     );
 }
@@ -125,7 +143,7 @@ function Routes() {
                 name="tts"
                 component={Tts}
                 options={{
-                    headerTitle: 'Sintese de voz',
+                    headerTitle: 'Sintese de Voz',
                     headerTitleAlign: 'center',
                     headerStyle: styles.headerStyle,
                     headerTintColor: '#4D4D58',

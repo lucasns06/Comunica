@@ -6,7 +6,7 @@ import LottieView from 'lottie-react-native';
 const Tts = () => {
     const [text, setText] = useState('');
     const [isSpeaking, setIsSpeaking] = useState(false);
-
+    
     const speak = () => {
         if (text) {
             setIsSpeaking(true);

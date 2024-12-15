@@ -36,12 +36,12 @@ function Emocoes() {
                                     <Image source={selectedItem.image} style={styles.modalImagem} />
                                 </>
                             )}
-                            <Pressable
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}>
-                                <Text style={styles.textStyle}>Fechar</Text>
-                            </Pressable>
                         </View>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={styles.textStyle}>Fechar</Text>
+                        </Pressable>
                     </View>
                 </View>
             </Modal>
@@ -112,12 +112,12 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
+        marginTop: 20,
+        borderRadius: 5,
+        padding: 5,
     },
     buttonClose: {
-        backgroundColor: '#2196F3',
+        backgroundColor: '#4D4D4D',
     },
     textStyle: {
         color: 'white',
