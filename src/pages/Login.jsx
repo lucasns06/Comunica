@@ -13,9 +13,13 @@ import {
   View,
 } from 'react-native';
 import LottieView from 'lottie-react-native';
+import { useUser  } from '../UserContext';
 
 function Login({ navigation }){
   const [sexo, setSexo] = useState('');
+  const { setNome } = useUser();
+  const [nome, setNomeLocal] = useState('');
+
   return (
     <SafeAreaView>
       <StatusBar barStyle="dark-content" backgroundColor="white"  />
@@ -30,7 +34,8 @@ function Login({ navigation }){
           />
           <Text style={styles.title}>Bem-Vindo!</Text>
           <Text style={styles.label}>Digite seu nome</Text>
-          <TextInput style={styles.input} placeholder="Nome" />
+          <TextInput style={styles.input} placeholder="Nome" value={nome}
+            onChangeText={setNomeLocal} />
           <Text style={styles.label}>Escolha seu sexo</Text>
           <Picker
             style={styles.picker}
@@ -45,7 +50,7 @@ function Login({ navigation }){
             <TouchableOpacity
               style={styles.button}
               activeOpacity={0.7} 
-              onPress={() => navigation.navigate('home')}
+              onPress={() => {setNome(nome); navigation.navigate('home')}}
             >
               <Text style={styles.buttonText}>ENTRAR</Text>
             </TouchableOpacity>

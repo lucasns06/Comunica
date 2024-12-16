@@ -1,9 +1,11 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+const Separator = () => <View style={styles.separator} />;
 
 function Edit({ navigation }) {
     return (
         <View style={styles.container} >
+            <Separator />
             <TouchableOpacity style={styles.categoria} onPress={() => navigation.navigate('add')}>
                 <Image source={require('../images/personalizar/add.png')} style={styles.imagem} />
                 <Text style={styles.texto}>Adicionar</Text>
@@ -12,8 +14,18 @@ function Edit({ navigation }) {
     );
 }
 const styles = StyleSheet.create({
+    separator: {
+        alignSelf: 'center',
+        width: '100%',
+        marginVertical: 20,
+        borderBottomColor: '#E8E7EB',
+        borderBottomWidth: 4,
+    },
     container: {
-        margin: 20
+        backgroundColor: 'white',
+        flex: 1,
+        paddingLeft: 20,
+        paddingRight: 20,
     },
     title: {
         fontSize: 32,

@@ -1,10 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import Routes from "./src/routes";
-
-export default function App(){
+import { UserProvider } from "./src/UserContext";
+export default function App() {
   return (
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+    </UserProvider>
   );
 }

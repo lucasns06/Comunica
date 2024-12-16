@@ -8,6 +8,7 @@ function Home({ navigation }) {
     return (
         <>
             <ScrollView style={styles.scrollview}>
+            <Separator />
                 <View style={styles.categorias}>
                     <TouchableOpacity style={[styles.categoria, styles.um]} onPress={() => navigation.navigate('necessidades')}>
                         <Image source={require('../images/Necessidades.png')} style={styles.imagem} />
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     separator: {
         alignSelf: 'center',
         width: '90%',
-        marginVertical: 8,
+        marginVertical: 20,
         borderBottomColor: '#E8E7EB',
         borderBottomWidth: 4,
     },
@@ -84,8 +85,8 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
         gap: 30,
-        marginTop: 50,
-        paddingBottom: 20
+        // marginTop: 50,
+        // paddingBottom: 20
     },
     categoria: {
         padding: 5,

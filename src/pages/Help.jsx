@@ -4,14 +4,14 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 const Contatos = () => {
 
     const contatos = [
-        { id: 1, nome: 'Contato 1' },
-        { id: 2, nome: 'Contato 2' },
-        { id: 3, nome: 'Contato 3' },
+        { id: 0, nome: 'Contato 1' },
+        { id: 1, nome: 'Contato 2' },
+        { id: 2, nome: 'Contato 3' },
     ];
     const opcoes = [
-        { id: 4, texto: 'Adicionar' },
-        { id: 5, texto: 'Editar' },
-        { id: 6, texto: 'Excluir' },
+        { id: 0, texto: 'Adicionar' },
+        { id: 1, texto: 'Editar' },
+        { id: 2, texto: 'Excluir' },
     ]
     return (
         <>

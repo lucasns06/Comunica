@@ -12,7 +12,7 @@ import Edit from './pages/Edit';
 import Add from './pages/Add';
 import Help from './pages/Help';
 import Tts from './pages/tts';
-import Perfil from './pages/perfil';
+import Perfil from './pages/Perfil';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -98,9 +98,10 @@ function TabNavigator() {
                             source={require('./images/user.png')}
                         />
                     ),
+                    headerTitle: '',
                     headerTitleAlign: 'center',
-                    headerStyle: styles.headerStyle,
-                    headerTintColor: '#4D4D58',
+                    headerStyle: styles.headerStyle2,
+                    headerTintColor: 'white',
                     headerTitleStyle: styles.headerTitleStyle,
                 }}
             />
@@ -212,6 +213,11 @@ function Routes() {
 const styles = StyleSheet.create({
     headerStyle: {
         backgroundColor: 'white',
+        elevation: 0
+    },
+    headerStyle2: {
+        backgroundColor: '#3387FF',
+        elevation: 0
     },
     headerTitleStyle: {
         fontSize: 32,
