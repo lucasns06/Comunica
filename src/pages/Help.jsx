@@ -17,15 +17,15 @@ const Contatos = () => {
         <>
             <View style={styles.contatos}>
                 {contatos.map((contato) => (
-                    <TouchableOpacity>
-                        <View key={contato.id} style={styles.contato}></View>
+                    <TouchableOpacity key={contato.id}>
+                        <View style={styles.contato}></View>
                         <Text style={styles.contatoTexto}>{contato.nome}</Text>
                     </TouchableOpacity>
                 ))}
             </View>
             <View>
                 {opcoes.map((opcoes) => (
-                    <TouchableOpacity style={styles.botao}>
+                    <TouchableOpacity key={opcoes.id} style={styles.botao}>
                         <Text style={styles.botaoTexto}>{opcoes.texto}</Text>
                     </TouchableOpacity>
                 ))}
