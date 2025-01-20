@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { Alert, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
-
 function Roupas() {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     buttonClose: {
-        backgroundColor: '#4D4D4D',
+        backgroundColor: 'red',
     },
     textStyle: {
         color: 'white',

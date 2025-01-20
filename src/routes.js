@@ -12,7 +12,7 @@ import Edit from './pages/Edit';
 import Add from './pages/Add';
 import Help from './pages/Help';
 import Tts from './pages/tts';
-import Perfil from './pages/Perfil';
+import Perfil from './pages/perfil';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,15 +24,18 @@ function TabNavigator() {
                 // animation: 'shift',
                 tabBarActiveTintColor: '#5A76FF',
                 tabBarInactiveTintColor: '#4D4D58',
+                tabBarLabelStyle:{
+                    fontSize: 12,
+                },
                 tabBarStyle: {
-                    backgroundColor: '#DADDE9',
-                    borderTopWidth: 4,
-                    borderColor: '#DADDE9',
-                    height: 60,
+                    backgroundColor: '#fff',
+                    borderTopWidth: 2,
+                    borderColor: '#7FAFF6',
+                    height: 55
                 },
                 contentStyle: {
                     backgroundColor: '#FFFFFF',
-                },
+                },  
             }}
         >
             <Tab.Screen
@@ -224,8 +227,8 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
     icon: {
-        width: 30,
-        height: 30,
+        width: 40,
+        height: 40,
     },
 });
 
