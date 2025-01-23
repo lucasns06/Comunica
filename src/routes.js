@@ -10,6 +10,7 @@ import Necessidades from './pages/categorias/Necessidades';
 import Social from './pages/categorias/Social';
 import Edit from './pages/Edit';
 import Add from './pages/Add';
+import AddImage from './pages/AddImage';
 import Help from './pages/Help';
 import Tts from './pages/tts';
 import Perfil from './pages/perfil';
@@ -158,7 +159,18 @@ function Routes() {
                 name="add"
                 component={Add}
                 options={{
-                    headerTitle: 'Adicionar',
+                    headerTitle: 'Adicionar Categoria',
+                    headerTitleAlign: 'center',
+                    headerStyle: styles.headerStyle,
+                    headerTintColor: '#4D4D58',
+                    headerTitleStyle: styles.headerTitleStyle,
+                }}
+            />
+            <Stack.Screen
+                name="addImage"
+                component={AddImage}
+                options={{
+                    headerTitle: 'Adicionar Imagem',
                     headerTitleAlign: 'center',
                     headerStyle: styles.headerStyle,
                     headerTintColor: '#4D4D58',

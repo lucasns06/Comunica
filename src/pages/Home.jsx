@@ -4,28 +4,51 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView,
 const Separator = () => <View style={styles.separator} />;
 
 function Home({ navigation }) {
-
+    const categorias = [
+        {
+            id: 0,
+            imagem: require('../images/Necessidades.png'),
+            texto: 'Necessidades',
+            navegacao: 'necessidades',
+            cor: styles.um
+        },
+        {
+            id: 1,
+            imagem: require('../images/triste.png'),
+            texto: 'Emoções',
+            navegacao: 'emocoes',
+            cor: styles.dois
+        },
+        {
+            id: 2,
+            imagem: require('../images/diaAdia.png'),
+            texto: 'Social',
+            navegacao: 'social',
+            cor: styles.tres
+        },
+        {
+            id: 3,
+            imagem: require('../images/roupa.png'),
+            texto: 'Roupas',
+            navegacao: 'roupas',
+            cor: styles.quatro
+        }
+    ]
+    let i = 0;
+    for(i ; i < 5 ; i++){
+        
+    }
     return (
         <>
             <ScrollView style={styles.scrollview}>
             <Separator />
                 <View style={styles.categorias}>
-                    <TouchableOpacity style={[styles.categoria, styles.um]} onPress={() => navigation.navigate('necessidades')}>
-                        <Image source={require('../images/Necessidades.png')} style={styles.imagem} />
-                        <Text style={styles.texto}>Necessidades</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.categoria, styles.dois]} onPress={() => navigation.navigate('emocoes')}>
-                        <Image source={require('../images/triste.png')} style={styles.imagem} />
-                        <Text style={styles.texto}>Emoções</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.categoria, styles.tres]} onPress={() => navigation.navigate('social')}>
-                        <Image source={require('../images/diaAdia.png')} style={styles.imagem} />
-                        <Text style={styles.texto}>Social</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.categoria, styles.quatro]} onPress={() => navigation.navigate('roupas')}>
-                        <Image source={require('../images/roupa.png')} style={styles.imagem} />
-                        <Text style={styles.texto}>Roupas</Text>
-                    </TouchableOpacity>
+                    {categorias.map((item)=>(
+                        <TouchableOpacity key={item.id} style={[styles.categoria, item.cor]} onPress={() => navigation.navigate(item.navegacao)}>
+                            <Image source={item.imagem} style={styles.imagem} />
+                            <Text style={styles.texto}>{item.texto}</Text>
+                        </TouchableOpacity>
+                    ))}
                 </View>
                 <Separator />
                 <View style={styles.inputContainer2}>

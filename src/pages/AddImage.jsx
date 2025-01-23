@@ -1,7 +1,7 @@
 import { Picker } from "@react-native-picker/picker";
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-function Add(){
+function AddImage(){
     return (
         <View style={styles.container} >
             <Image source={require('../images/personalizar/image.png')} style={styles.imagem} />
@@ -10,7 +10,12 @@ function Add(){
                 <Text style={styles.buttonText}>Enviar</Text>
             </TouchableOpacity>
             <Text style={styles.label}>Nome</Text>
-            <TextInput style={styles.input} placeholder="Nome da categoria" />
+            <TextInput style={styles.input} placeholder="Nome da imagem" />
+            <Text style={styles.label}>Escolha a categoria</Text>
+            <Picker style={styles.input}  >
+                <Picker.Item label="Selecione..." value="" />
+                {/* categorias */}
+            </Picker>
             <Text style={styles.label}>Cor de fundo (Opcional)</Text>
             <Picker style={styles.input}  >
                 <Picker.Item label="Selecione..." value="" />
@@ -76,4 +81,4 @@ const styles = StyleSheet.create({
     }
 
 })
-export default Add;
+export default AddImage;
