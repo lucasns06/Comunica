@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, Button } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, Button, StatusBar } from "react-native";
 
 const Separator = () => <View style={styles.separator} />;
 

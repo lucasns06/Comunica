@@ -18,7 +18,7 @@ import { useUser } from "../UserContext";
 
 function Login({ navigation }) {
   const [sexo, setSexoLocal] = useState("");
-  const { setNome, setSexo } = useUser();
+  const {setNome, setSexo} = useUser();
   const [nome, setNomeLocal] = useState("");
   const [erro, setErro] = useState("");
   const [erro2, setErro2] = useState("");
@@ -54,7 +54,6 @@ function Login({ navigation }) {
   }
   return (
     <SafeAreaView>
-      <StatusBar barStyle="dark-content" backgroundColor="white" />
       <ScrollView style={styles.scrollview}>
         <View style={styles.container}>
           {/* <Image style={styles.logo} source={require('../images/logoAplicativo.png')} /> */}

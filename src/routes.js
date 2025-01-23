@@ -13,6 +13,7 @@ import Add from './pages/Add';
 import Help from './pages/Help';
 import Tts from './pages/tts';
 import Perfil from './pages/perfil';
+import { useState } from 'react';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,7 +22,6 @@ function TabNavigator() {
     return (
         <Tab.Navigator
             screenOptions={{
-                // animation: 'shift',
                 tabBarActiveTintColor: '#5A76FF',
                 tabBarInactiveTintColor: '#4D4D58',
                 tabBarLabelStyle:{
@@ -120,7 +120,7 @@ function Routes() {
                     backgroundColor: '#FFFFFF',
                 },
             }}
-            initialRouteName="login"
+            initialRouteName="home"
         >
             <Stack.Screen
                 name="login"
