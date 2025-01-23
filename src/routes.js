@@ -102,7 +102,7 @@ function TabNavigator() {
                             source={require('./images/user.png')}
                         />
                     ),
-                    headerTitle: '',
+                    headerTitle: 'Perfil',
                     headerTitleAlign: 'center',
                     headerStyle: styles.headerStyle2,
                     headerTintColor: 'white',

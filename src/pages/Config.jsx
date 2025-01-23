@@ -6,11 +6,15 @@ function Config() {
     return (
         <View style={styles.container}>
             <Separator />
-            <Text style={styles.title}>GERAL</Text>
-            <TouchableOpacity>
-                {/* <Image source={item.image} style={styles.imagem} /> */}
-                <Text style={styles.text}>Tema</Text>
-            </TouchableOpacity>
+            <Text style={styles.title}>Tema</Text>
+            <View style={styles.containerButton}>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.text}>Padrão</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.button, styles.gray]}>
+                    <Text style={[styles.text, styles.gray]}>Escuro</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -28,6 +32,19 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
     },
+    containerButton:{
+        gap: 16
+    },  
+    button:{
+        padding: 5,
+        backgroundColor: 'white',
+        borderWidth: 2,
+        width: 150,
+    },
+    gray:{
+        backgroundColor: 'gray',
+        color: 'white'
+    },
     title: {
         fontSize: 32,
         fontWeight: 'bold',
@@ -35,6 +52,7 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize: 24,
+        textAlign: 'center'
     }
 
 })

@@ -1,14 +1,33 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View, StatusBar } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { useUser } from "../UserContext";
+import * as ImagePicker from "expo-image-picker";
 
 const Perfil = ({ navigation }) => {
+  const [image, setImage] = useState();
   const { nome, sexo } = useUser();
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images", "videos"],
+      allowsEditing: true,
+      aspect: [3, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.topBackground}></View>
       <View style={styles.containerCenter}>
-        <View style={styles.perfil}></View>
+        <TouchableOpacity style={styles.perfil} onPress={pickImage}>
+          {image ? ( <Image source={{ uri: image }} style={styles.imagem} />) : ( <Image source={require("../images/photo.png")} style={styles.imagem} /> )}
+        </TouchableOpacity>
       </View>
       <View style={styles.containerTexto}>
         <Text style={styles.title}>Nome</Text>
@@ -16,7 +35,10 @@ const Perfil = ({ navigation }) => {
         <Text style={styles.title}>Sexo</Text>
         <Text style={styles.text}>{sexo}</Text>
       </View>
-      <TouchableOpacity style={[styles.button, styles.containerPerfil]} onPress={() => navigation.navigate('login')}>
+      <TouchableOpacity
+        style={[styles.button, styles.containerPerfil]}
+        onPress={() => navigation.navigate("login")}
+      >
         <Text style={styles.buttonText}>Editar</Text>
       </TouchableOpacity>
     </View>
@@ -57,13 +79,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   perfil: {
-    backgroundColor: "white",
+    overflow: "hidden",
+    backgroundColor: "#fff",
     width: 150,
     height: 150,
     borderRadius: "100%",
     borderColor: "#ffffff",
     borderWidth: 2,
-    boxShadow: "0px 0px 10px rgba(0, 81, 255, 0.74)",
+  },
+  imagem: {
+    width: "100%",
+    height: "100%",
+    // tintColor: '#9a9a9a'
   },
   button: {
     marginTop: 40,

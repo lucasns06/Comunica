@@ -34,10 +34,6 @@ function Home({ navigation }) {
             cor: styles.quatro
         }
     ]
-    let i = 0;
-    for(i ; i < 5 ; i++){
-        
-    }
     return (
         <>
             <ScrollView style={styles.scrollview}>
