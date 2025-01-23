@@ -16,8 +16,8 @@ import LottieView from 'lottie-react-native';
 import { useUser  } from '../UserContext';
 
 function Login({ navigation }){
-  const [sexo, setSexo] = useState('');
-  const { setNome } = useUser();
+  const [sexo, setSexoLocal] = useState('');
+  const { setNome, setSexo } = useUser();
   const [nome, setNomeLocal] = useState('');
 
   return (
@@ -36,21 +36,25 @@ function Login({ navigation }){
           <Text style={styles.label}>Digite seu nome</Text>
           <TextInput style={styles.input} placeholder="Nome" value={nome}
             onChangeText={setNomeLocal} />
+
           <Text style={styles.label}>Escolha seu sexo</Text>
           <Picker
             style={styles.picker}
             selectedValue={sexo}
-            onValueChange={(itemValue) => setSexo(itemValue)}
+            onValueChange={(itemValue) => setSexoLocal(itemValue)}
           >
             <Picker.Item label="Selecione..." value="" />
-            <Picker.Item label="Masculino" value="masculino" />
-            <Picker.Item label="Feminino" value="feminino" />
+            <Picker.Item label="Masculino" value="Masculino" />
+            <Picker.Item label="Feminino" value="Feminino" />
           </Picker>
           <View>
             <TouchableOpacity
               style={styles.button}
               activeOpacity={0.7} 
-              onPress={() => {setNome(nome); navigation.navigate('home')}}
+              onPress={() => {
+                setNome(nome); 
+                setSexo(sexo);
+                navigation.navigate('home')}}
             >
               <Text style={styles.buttonText}>ENTRAR</Text>
             </TouchableOpacity>

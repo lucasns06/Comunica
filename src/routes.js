@@ -30,7 +30,7 @@ function TabNavigator() {
                 tabBarStyle: {
                     backgroundColor: '#fff',
                     borderTopWidth: 2,
-                    borderColor: '#7FAFF6',
+                    borderColor: '#888888',
                     height: 55
                 },
                 contentStyle: {
