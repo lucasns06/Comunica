@@ -1,6 +1,7 @@
 import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
 import {
+  Alert,
   Button,
   Image,
   SafeAreaView,
@@ -19,7 +20,41 @@ function Login({ navigation }){
   const [sexo, setSexoLocal] = useState('');
   const { setNome, setSexo } = useUser();
   const [nome, setNomeLocal] = useState('');
+  const [erro, setErro] = useState('');
+  const [erro2, setErro2] = useState('');
 
+  const erro1 = 'erro1';
+  const erroS = 'erroS';
+
+  function clearWarning(opcao){
+    if(opcao == 'erro1'){
+      setErro('')
+    }
+    if(opcao == 'erroS'){
+      setErro2('')
+    }
+  }
+
+  function verificar(){
+    
+    if(!nome.trim()){
+      setErro("Por favor digite um nome valido!")
+    }else{
+      setNome(nome); 
+    }
+    if(!sexo){
+      setErro2("Por favor digite um sexo valido!")
+    }else{
+      setSexo(sexo);
+    }
+
+    if(!nome.trim() || !sexo){
+      setErro("Por favor digite um nome valido!")
+      setErro2("Por favor digite um sexo valido!")
+    }else{
+      navigation.navigate('home')
+    }
+  }
   return (
     <SafeAreaView>
       <StatusBar barStyle="dark-content" backgroundColor="white"  />
@@ -35,27 +70,26 @@ function Login({ navigation }){
           <Text style={styles.title}>Bem-Vindo!</Text>
           <Text style={styles.label}>Digite seu nome</Text>
           <TextInput style={styles.input} placeholder="Nome" value={nome}
-            onChangeText={setNomeLocal} />
+            onChangeText={setNomeLocal} onFocus={() => clearWarning(erro1)}/>
 
-          <Text style={styles.label}>Escolha seu sexo</Text>
+          <Text style={styles.warning}>{erro}</Text>
+    
+          <Text style={styles.label}>Selecione seu sexo</Text>
           <Picker
             style={styles.picker}
             selectedValue={sexo}
-            onValueChange={(itemValue) => setSexoLocal(itemValue)}
+            onValueChange={(itemValue) => [setSexoLocal(itemValue), clearWarning(erroS)]}
           >
             <Picker.Item label="Selecione..." value="" />
             <Picker.Item label="Masculino" value="Masculino" />
             <Picker.Item label="Feminino" value="Feminino" />
           </Picker>
+          <Text style={styles.warning}>{erro2}</Text>
           <View>
             <TouchableOpacity
               style={styles.button}
               activeOpacity={0.7} 
-              onPress={() => {
-                setNome(nome); 
-                setSexo(sexo);
-                navigation.navigate('home')}}
-            >
+              onPress={() => verificar()} >
               <Text style={styles.buttonText}>ENTRAR</Text>
             </TouchableOpacity>
           </View>
@@ -74,6 +108,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  warning:{
+    color: 'red',
+    fontSize: 18,
   },
   logo: {
     alignSelf: 'center', 
