@@ -1,5 +1,5 @@
-import { Picker } from '@react-native-picker/picker';
-import React, { useState } from 'react';
+import { Picker } from "@react-native-picker/picker";
+import React, { useState } from "react";
 import {
   Alert,
   Button,
@@ -12,73 +12,78 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from 'react-native';
-import LottieView from 'lottie-react-native';
-import { useUser  } from '../UserContext';
+} from "react-native";
+import LottieView from "lottie-react-native";
+import { useUser } from "../UserContext";
 
-function Login({ navigation }){
-  const [sexo, setSexoLocal] = useState('');
+function Login({ navigation }) {
+  const [sexo, setSexoLocal] = useState("");
   const { setNome, setSexo } = useUser();
-  const [nome, setNomeLocal] = useState('');
-  const [erro, setErro] = useState('');
-  const [erro2, setErro2] = useState('');
+  const [nome, setNomeLocal] = useState("");
+  const [erro, setErro] = useState("");
+  const [erro2, setErro2] = useState("");
 
-  const erro1 = 'erro1';
-  const erroS = 'erroS';
-
-  function clearWarning(opcao){
-    if(opcao == 'erro1'){
-      setErro('')
+  function clearWarning(opcao) {
+    if (opcao == "erro1") {
+      setErro("");
     }
-    if(opcao == 'erroS'){
-      setErro2('')
+    if (opcao == "erro2") {
+      setErro2("");
     }
   }
 
-  function verificar(){
-    
-    if(!nome.trim()){
-      setErro("Por favor digite um nome valido!")
-    }else{
-      setNome(nome); 
-    }
-    if(!sexo){
-      setErro2("Por favor digite um sexo valido!")
-    }else{
-      setSexo(sexo);
+  function verificar() {
+    let nomeValido = true;
+    let sexoValido = true;
+
+    if (!nome.trim()) {
+      setErro("Por favor digite um nome valido!");
+      nomeValido = false;
     }
 
-    if(!nome.trim() || !sexo){
-      setErro("Por favor digite um nome valido!")
-      setErro2("Por favor digite um sexo valido!")
-    }else{
-      navigation.navigate('home')
+    if (!sexo) {
+      setErro2("Por favor digite um sexo valido!");
+      sexoValido = false;
+    }
+
+    if (nomeValido && sexoValido) {
+      setNome(nome);
+      setSexo(sexo);
+      navigation.navigate("home");
     }
   }
   return (
     <SafeAreaView>
-      <StatusBar barStyle="dark-content" backgroundColor="white"  />
+      <StatusBar barStyle="dark-content" backgroundColor="white" />
       <ScrollView style={styles.scrollview}>
         <View style={styles.container}>
           {/* <Image style={styles.logo} source={require('../images/logoAplicativo.png')} /> */}
           <LottieView
-            source={require('../images/gifs/Gif.json')}  // animação em formato JSON
+            source={require("../images/gifs/Gif.json")} // animação em formato JSON
             autoPlay
             loop
             style={styles.logo}
           />
           <Text style={styles.title}>Bem-Vindo!</Text>
           <Text style={styles.label}>Digite seu nome</Text>
-          <TextInput style={styles.input} placeholder="Nome" value={nome}
-            onChangeText={setNomeLocal} onFocus={() => clearWarning(erro1)}/>
+          <TextInput
+            style={styles.input}
+            placeholder="Nome"
+            value={nome}
+            onChangeText={setNomeLocal}
+            onFocus={() => clearWarning("erro1")}
+          />
 
           <Text style={styles.warning}>{erro}</Text>
-    
+
           <Text style={styles.label}>Selecione seu sexo</Text>
           <Picker
             style={styles.picker}
             selectedValue={sexo}
-            onValueChange={(itemValue) => [setSexoLocal(itemValue), clearWarning(erroS)]}
+            onValueChange={(itemValue) => [
+              setSexoLocal(itemValue),
+              clearWarning("erro2"),
+            ]}
           >
             <Picker.Item label="Selecione..." value="" />
             <Picker.Item label="Masculino" value="Masculino" />
@@ -88,8 +93,9 @@ function Login({ navigation }){
           <View>
             <TouchableOpacity
               style={styles.button}
-              activeOpacity={0.7} 
-              onPress={() => verificar()} >
+              activeOpacity={0.7}
+              onPress={() => verificar()}
+            >
               <Text style={styles.buttonText}>ENTRAR</Text>
             </TouchableOpacity>
           </View>
@@ -106,58 +112,58 @@ const styles = StyleSheet.create({
   container: {
     margin: 20,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
-  warning:{
-    color: 'red',
+  warning: {
+    color: "red",
     fontSize: 18,
   },
   logo: {
-    alignSelf: 'center', 
+    alignSelf: "center",
     width: 200,
     height: 200,
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 52,
-    color: '#191919',
+    color: "#191919",
     marginVertical: 20,
   },
   label: {
     marginTop: 30,
-    color: 'black',
+    color: "black",
     fontSize: 22,
   },
   input: {
     marginTop: 10,
     fontSize: 18,
-    backgroundColor: '#F5F5F6',
+    backgroundColor: "#F5F5F6",
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    width: '100%',
+    width: "100%",
   },
   picker: {
     marginTop: 10,
     fontSize: 18,
-    backgroundColor: '#F5F5F6',
+    backgroundColor: "#F5F5F6",
     borderRadius: 10,
-    width: '100%',
+    width: "100%",
   },
   button: {
     marginTop: 40,
-    backgroundColor: '#66A5FF',
+    backgroundColor: "#66A5FF",
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
-    alignItems: 'center',
-    width: '80%',
+    alignItems: "center",
+    width: "80%",
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 
