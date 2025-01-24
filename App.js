@@ -2,13 +2,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import Routes from "./src/routes";
 import { UserProvider } from "./src/UserContext";
 import {StatusBar} from 'react-native'
+import { CategoryProvider } from "./src/CategoriesContext";
 export default function App() {
   return (
-    <UserProvider>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent  />
-      <NavigationContainer>
-        <Routes />
-      </NavigationContainer>
-    </UserProvider>
+    <CategoryProvider>
+      <UserProvider>
+        <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent  />
+        <NavigationContainer>
+          <Routes />
+        </NavigationContainer>
+      </UserProvider>
+    </CategoryProvider>
   );
 }

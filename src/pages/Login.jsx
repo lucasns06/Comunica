@@ -18,11 +18,10 @@ import { useUser } from "../UserContext";
 
 function Login({ navigation }) {
   const [sexo, setSexoLocal] = useState("");
-  const {setNome, setSexo} = useUser();
+  const {setNome, setSexo} = useUser(); //context
   const [nome, setNomeLocal] = useState("");
   const [erro, setErro] = useState("");
   const [erro2, setErro2] = useState("");
-
   function clearWarning(opcao) {
     if (opcao == "erro1") {
       setErro("");
