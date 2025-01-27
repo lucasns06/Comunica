@@ -65,3 +65,5 @@ Executar o projeto
 ```bash
   npx expo start --android
 ```
+
+Ou baixar a release.
