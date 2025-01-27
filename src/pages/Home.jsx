@@ -37,7 +37,6 @@ function Home({ navigation }) {
     return (
         <>
             <ScrollView style={styles.scrollview}>
-            <Separator />
                 <View style={styles.categorias}>
                     {categorias.map((item)=>(
                         <TouchableOpacity key={item.id} style={[styles.categoria, item.cor]} onPress={() => navigation.navigate(item.navegacao)}>
@@ -46,7 +45,6 @@ function Home({ navigation }) {
                         </TouchableOpacity>
                     ))}
                 </View>
-                <Separator />
                 <View style={styles.inputContainer2}>
                     <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('tts')}>
                         <Image source={require('../images/audio.png')} style={styles.iconImage} />
@@ -102,8 +100,10 @@ const styles = StyleSheet.create({
     categorias: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         gap: 30,
+        marginHorizontal: 28,
+        marginVertical: 38
         // marginTop: 50,
         // paddingBottom: 20
     },

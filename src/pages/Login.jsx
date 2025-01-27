@@ -22,6 +22,7 @@ function Login({ navigation }) {
   const [nome, setNomeLocal] = useState("");
   const [erro, setErro] = useState("");
   const [erro2, setErro2] = useState("");
+
   function clearWarning(opcao) {
     if (opcao == "erro1") {
       setErro("");
@@ -30,7 +31,6 @@ function Login({ navigation }) {
       setErro2("");
     }
   }
-
   function verificar() {
     let nomeValido = true;
     let sexoValido = true;
@@ -41,7 +41,7 @@ function Login({ navigation }) {
     }
 
     if (!sexo) {
-      setErro2("Por favor digite um sexo valido!");
+      setErro2("Por favor Selecione um sexo!");
       sexoValido = false;
     }
 

@@ -1,12 +1,10 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-const Separator = () => <View style={styles.separator} />;
 
 function Edit({ navigation }) {
   return (
     <View style={styles.container}>
-      <Separator />
-      <Text style={styles.texto}>O que você quer adicionar?</Text>
+      {/* <Text style={styles.texto}>O que você quer adicionar?</Text> */}
       <View style={styles.containerBotoes}>
         <View>
             <Text style={styles.title}>Categorias</Text>
@@ -39,13 +37,6 @@ function Edit({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  separator: {
-    alignSelf: "center",
-    width: "100%",
-    marginVertical: 20,
-    borderBottomColor: "#E8E7EB",
-    borderBottomWidth: 4,
-  },
   containerBotoes:{
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -55,8 +46,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingHorizontal: 20,
+    paddingTop: 20
   },
   title: {
     fontSize: 32,

@@ -1,30 +1,28 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Button } from "react-native";
 const Separator = () => <View style={styles.separator} />;
 
 function Config() {
     return (
         <View style={styles.container}>
-            <Separator />
+            <View style={styles.separator}></View>
             <Text style={styles.title}>Tema</Text>
             <View style={styles.containerButton}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.text}>Padrão</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.button, styles.gray]}>
-                    <Text style={[styles.text, styles.gray]}>Escuro</Text>
-                </TouchableOpacity>
+                <Button title="Claro"> </Button>
+                <Button title="Escuro"> </Button>
+            </View>
+            <Text style={styles.title}>Contatos</Text>
+            <View style={styles.containerButton}>
+                <Button title="Adicionar"> </Button>
+                <Button title="Editar"> </Button>
+                <Button title="Deletar"> </Button>
             </View>
         </View>
     );
 }
 const styles = StyleSheet.create({
     separator: {
-        alignSelf: 'center',
-        width: '100%',
         marginVertical: 20,
-        borderBottomColor: '#E8E7EB',
-        borderBottomWidth: 4,
     },
     container: {
         backgroundColor: 'white',
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
         paddingRight: 20,
     },
     containerButton:{
-        gap: 16
+        gap: 16,
     },  
     button:{
         padding: 5,
@@ -48,7 +46,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 32,
         fontWeight: 'bold',
-        color: 'black'
+        color: 'black',
+        marginVertical: 10
     },
     text:{
         fontSize: 24,
