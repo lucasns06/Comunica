@@ -62,7 +62,7 @@ function TabNavigator({ navigation }) {
               size={40}
               color={"black"}
               onPress={() => navigation.navigate("config")}
-              style={{marginRight: '24%'}}
+              style={{marginRight: '20%'}}
             />
           ),
         }}
@@ -227,7 +227,14 @@ function Routes() {
       />
       <Stack.Screen 
         name="CategoryScreen" 
-        component={DynamicCategoryScreen} />
+        component={DynamicCategoryScreen}
+        options={{
+          headerTitle: 'Imagens',
+          headerTitleAlign: "center",
+          headerStyle: styles.headerStyle,
+          headerTintColor: "#4D4D58",
+          headerTitleStyle: styles.headerTitleStyle,
+        }} />
     </Stack.Navigator>
   );
 }

@@ -76,6 +76,32 @@ export const CategoryProvider = ({ children }) => {
       texto: "Social",
       navegacao: "social",
       cor: styles.tres,
+      imagens: [
+        {
+            id: 1,
+            imagem:  require('../src/images/social/sim.png') ,
+            texto: 'Sim',
+            cor: styles.tres,
+        },
+        {
+            id: 2,
+            imagem:  require('../src/images/social/nao.png'),
+            texto: 'Não',
+            cor: styles.tres,
+        },
+        {
+            id: 3,
+            imagem:  require('../src/images/social/obrigado.png'),
+            texto: 'Obrigado',
+            cor: styles.tres,
+        },
+        {
+            id: 4,
+            imagem:  require('../src/images/social/desculpa.png'),
+            texto: 'Desculpa',
+            cor: styles.tres,
+        }
+      ]
     },
     {
       id: 3,
@@ -83,13 +109,32 @@ export const CategoryProvider = ({ children }) => {
       texto: "Roupas",
       navegacao: "roupas",
       cor: styles.quatro,
-    },
-    {
-      id: 4,
-      imagem: { uri: 'https://reactnative.dev/img/tiny_logo.png' },
-      texto: "React",
-      navegacao: "roupas",
-      cor: styles.quatro,
+      imagens: [
+        {
+            id: 1,
+            imagem:  require('../src/images/roupas/calca.png') ,
+            texto: 'calça',
+            cor: styles.quatro,
+        },
+        {
+            id: 2,
+            imagem:  require('../src/images/roupas/roupa.png'),
+            texto: 'Camisa',
+            cor: styles.quatro,
+        },
+        {
+            id: 3,
+            imagem:  require('../src/images/roupas/short.png'),
+            texto: 'Short',
+            cor: styles.quatro,
+        },
+        {
+            id: 4,
+            imagem:  require('../src/images/roupas/cueca.png'),
+            texto: 'Cueca',
+            cor: styles.quatro,
+        }
+      ]
     },
   ]);
   return (
