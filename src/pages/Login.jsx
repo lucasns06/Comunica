@@ -16,9 +16,9 @@ import {
 import LottieView from "lottie-react-native";
 import { useUser } from "../UserContext";
 
-function Login({ navigation }) {
+function Login({ navigation }) {  
+  const { setUser } = useUser(); 
   const [sexo, setSexoLocal] = useState("");
-  const {setNome, setSexo} = useUser(); //context
   const [nome, setNomeLocal] = useState("");
   const [erro, setErro] = useState("");
   const [erro2, setErro2] = useState("");
@@ -46,8 +46,7 @@ function Login({ navigation }) {
     }
 
     if (nomeValido && sexoValido) {
-      setNome(nome);
-      setSexo(sexo);
+      setUser({ nome, sexo }); 
       navigation.navigate("home");
     }
   }
@@ -55,9 +54,8 @@ function Login({ navigation }) {
     <SafeAreaView>
       <ScrollView style={styles.scrollview}>
         <View style={styles.container}>
-          {/* <Image style={styles.logo} source={require('../images/logoAplicativo.png')} /> */}
           <LottieView
-            source={require("../images/gifs/Gif.json")} // animação em formato JSON
+            source={require("../images/gifs/Gif.json")} 
             autoPlay
             loop
             style={styles.logo}

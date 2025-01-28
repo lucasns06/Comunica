@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Image, StyleSheet, Button } from "react-native";
+import { StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
@@ -8,10 +8,6 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Config from "./pages/Config";
-import Roupas from "./pages/categorias/Roupas";
-import Emocoes from "./pages/categorias/Emocoes";
-import Necessidades from "./pages/categorias/Necessidades";
-import Social from "./pages/categorias/Social";
 import Edit from "./pages/Edit";
 import Add from "./pages/Add";
 import AddImage from "./pages/AddImage";
@@ -19,6 +15,7 @@ import Help from "./pages/Help";
 import Tts from "./pages/tts";
 import Perfil from "./pages/perfil";
 import DynamicCategoryScreen from './pages/DynamicCategoryScreen'
+import { useUser } from './UserContext';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -109,6 +106,7 @@ function TabNavigator({ navigation }) {
 }
 
 function Routes() {
+  const { user } = useUser();
   return (
     <Stack.Navigator
       screenOptions={{
@@ -116,7 +114,7 @@ function Routes() {
           backgroundColor: "#FFFFFF",
         },
       }}
-      initialRouteName="home"
+      initialRouteName={!user ? "login" : "home"}
     >
       <Stack.Screen
         name="config"
@@ -175,50 +173,6 @@ function Routes() {
         component={AddImage}
         options={{
           headerTitle: "Adicionar Imagem",
-          headerTitleAlign: "center",
-          headerStyle: styles.headerStyle,
-          headerTintColor: "#4D4D58",
-          headerTitleStyle: styles.headerTitleStyle,
-        }}
-      />
-      <Stack.Screen
-        name="roupas"
-        component={Roupas}
-        options={{
-          headerTitle: "Roupas",
-          headerTitleAlign: "center",
-          headerStyle: styles.headerStyle,
-          headerTintColor: "#4D4D58",
-          headerTitleStyle: styles.headerTitleStyle,
-        }}
-      />
-      <Stack.Screen
-        name="emocoes"
-        component={Emocoes}
-        options={{
-          headerTitle: "Emoções",
-          headerTitleAlign: "center",
-          headerStyle: styles.headerStyle,
-          headerTintColor: "#4D4D58",
-          headerTitleStyle: styles.headerTitleStyle,
-        }}
-      />
-      <Stack.Screen
-        name="necessidades"
-        component={Necessidades}
-        options={{
-          headerTitle: "Necessidades",
-          headerTitleAlign: "center",
-          headerStyle: styles.headerStyle,
-          headerTintColor: "#4D4D58",
-          headerTitleStyle: styles.headerTitleStyle,
-        }}
-      />
-      <Stack.Screen
-        name="social"
-        component={Social}
-        options={{
-          headerTitle: "Social",
           headerTitleAlign: "center",
           headerStyle: styles.headerStyle,
           headerTintColor: "#4D4D58",

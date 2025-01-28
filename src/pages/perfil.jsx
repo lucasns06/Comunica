@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image, ActivityIndicator  } from "react-native";
 import { useUser } from "../UserContext";
 import * as ImagePicker from "expo-image-picker";
 
 const Perfil = ({ navigation }) => {
   const [image, setImage] = useState();
-  const { nome, sexo } = useUser();
+  const { user } = useUser();
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -21,6 +21,13 @@ const Perfil = ({ navigation }) => {
       setImage(result.assets[0].uri);
     }
   };
+  if (!user) {
+    return (
+      <View style={styles.container}>  
+      <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <View style={styles.topBackground}></View>
@@ -31,9 +38,9 @@ const Perfil = ({ navigation }) => {
       </View>
       <View style={styles.containerTexto}>
         <Text style={styles.title}>Nome</Text>
-        <Text style={styles.text}>{nome}</Text>
+        <Text style={styles.text}>{user.nome}</Text>
         <Text style={styles.title}>Sexo</Text>
-        <Text style={styles.text}>{sexo}</Text>
+        <Text style={styles.text}>{user.sexo}</Text>
       </View>
       <TouchableOpacity
         style={[styles.button, styles.containerPerfil]}
