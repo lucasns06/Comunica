@@ -18,7 +18,7 @@ import AddImage from "./pages/AddImage";
 import Help from "./pages/Help";
 import Tts from "./pages/tts";
 import Perfil from "./pages/perfil";
-
+import DynamicCategoryScreen from './pages/DynamicCategoryScreen'
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -62,7 +62,7 @@ function TabNavigator({ navigation }) {
               size={40}
               color={"black"}
               onPress={() => navigation.navigate("config")}
-              style={{marginRight: '15%'}}
+              style={{marginRight: '24%'}}
             />
           ),
         }}
@@ -225,6 +225,9 @@ function Routes() {
           headerTitleStyle: styles.headerTitleStyle,
         }}
       />
+      <Stack.Screen 
+        name="CategoryScreen" 
+        component={DynamicCategoryScreen} />
     </Stack.Navigator>
   );
 }
