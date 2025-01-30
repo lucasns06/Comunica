@@ -22,7 +22,15 @@ function Login({ navigation }) {
   const [nome, setNomeLocal] = useState("");
   const [erro, setErro] = useState("");
   const [erro2, setErro2] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
   function clearWarning(opcao) {
     if (opcao == "erro1") {
       setErro("");
@@ -63,11 +71,13 @@ function Login({ navigation }) {
           <Text style={styles.title}>Bem-Vindo!</Text>
           <Text style={styles.label}>Digite seu nome</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, isFocused && styles.focusedInput]}
             placeholder="Nome"
             value={nome}
             onChangeText={setNomeLocal}
-            onFocus={() => clearWarning("erro1")}
+            onPress={() => clearWarning("erro1")}        
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
 
           <Text style={styles.warning}>{erro}</Text>
@@ -139,13 +149,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     width: "100%",
+    borderWidth: 2,
+    borderColor: '#fff'
+  },
+  focusedInput:{
+    marginTop: 10,
+    fontSize: 18,
+    backgroundColor: "#F5F5F6",
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    width: "100%",
+    borderWidth: 2,
+    borderColor: '#66A5FF'
   },
   picker: {
     marginTop: 10,
     fontSize: 18,
     backgroundColor: "#F5F5F6",
     borderRadius: 10,
-    width: "100%",
+    borderWidth: 2,
+    width: "97%",
   },
   button: {
     marginTop: 40,
