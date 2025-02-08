@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 const Separator = () => <View style={styles.separator} />;
 
 function Config() {

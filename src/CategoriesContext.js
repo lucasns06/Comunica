@@ -8,7 +8,6 @@ export const CategoryProvider = ({ children }) => {
       id: 0,
       imagem: require("../src/images/Necessidades.png"),
       texto: "Necessidades",
-      navegacao: "necessidades",
       cor: styles.um,
       imagens: [
         {
@@ -41,7 +40,6 @@ export const CategoryProvider = ({ children }) => {
       id: 1,
       imagem: require("../src/images/triste.png"),
       texto: "Emoções",
-      navegacao: "emocoes",
       cor: styles.dois,
       imagens: [
         {
@@ -74,7 +72,6 @@ export const CategoryProvider = ({ children }) => {
       id: 2,
       imagem: require("../src/images/diaAdia.png"),
       texto: "Social",
-      navegacao: "social",
       cor: styles.tres,
       imagens: [
         {
@@ -107,7 +104,6 @@ export const CategoryProvider = ({ children }) => {
       id: 3,
       imagem: require("../src/images/roupa.png"),
       texto: "Roupas",
-      navegacao: "roupas",
       cor: styles.quatro,
       imagens: [
         {

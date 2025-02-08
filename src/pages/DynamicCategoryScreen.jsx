@@ -23,7 +23,7 @@ function DynamicCategoryScreen({ route }) {
   const { categoryId } = route.params;
   const { categories } = useCategory();
 
-  const category = categories.find((cat) => cat.id === categoryId);
+  const category = categories.find((item) => item.id === categoryId);
 
   return (
     <View>
@@ -77,32 +77,32 @@ function DynamicCategoryScreen({ route }) {
 
 const styles = StyleSheet.create({
   textStyle: {
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
-      fontSize: 32
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 32
   },
   modalImagem: {
-      width: 200,
-      height: 200,
+    width: 200,
+    height: 200,
   },
   centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalView: {
-      width: 350,
-      height: 350,
-      margin: 0,
-      backgroundColor: 'gray',
-      borderRadius: 20,
-      padding: 35,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
+    width: 350,
+    height: 350,
+    margin: 0,
+    backgroundColor: 'gray',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   overlay: {
     flex: 1,

@@ -15,12 +15,18 @@ import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 function Add() {
-  const { setTexto, setCor } = useCategory();
+  const { categories } = useCategory();
   const [texto, setTextolocal] = useState("");
   const [warning, setWarning] = useState("");
   const [image, setImage] = useState();
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [isFocused, setIsFocused] = useState(false);
+  const handleFocus = () => {
+    setIsFocused()
+  }
+  const toggleFocus = () => {
+    setIsFocused(prevState => !prevState)
+  }
   const openModal = () => {
     setModalVisible(true);
   };
@@ -36,14 +42,20 @@ function Add() {
       nomeValido = false;
     }
     if (nomeValido) {
-      setTexto(texto);
+      categories.push[
+        {
+          imagem: require('../images/error.png'),
+          texto: texto,
+          cor: styles.dois
+        }
+      ]
       openModal();
     }
   }
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images", "videos"],
+      mediaTypes: ["images"],
       allowsEditing: true,
       aspect: [3, 3],
       quality: 1,
@@ -67,12 +79,15 @@ function Add() {
         >
           <View style={styles.overlay}>
             <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Categoria Salva!</Text>
-                    <Pressable onPress={() => setModalVisible(!modalVisible)} style={[styles.button, styles.buttonClose]}>
-                        <Text style={styles.modalText}>Fechar</Text>
-                    </Pressable>
-                </View>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>Categoria Salva!</Text>
+                <Pressable
+                  onPress={() => setModalVisible(!modalVisible)}
+                  style={[styles.button, styles.buttonClose]}
+                >
+                  <Text style={styles.modalText}>Fechar</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </Modal>
@@ -94,9 +109,10 @@ function Add() {
           </TouchableOpacity>
           <Text style={styles.label}>Nome</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, isFocused ? styles.focusedInput : ""]}
             placeholder="Nome da categoria"
-            onFocus={() => clear()}
+            onFocus={() => [clear(), handleFocus()]}
+            onblur={() => toggleFocus()}
             value={texto}
             onChangeText={setTextolocal}
           />
@@ -141,9 +157,22 @@ const styles = StyleSheet.create({
   },
   input: {
     marginTop: 10,
-    fontSize: 22,
+    fontSize: 18,
     backgroundColor: "#F5F5F6",
-    borderRadius: 20,
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+  focusedInput: {
+    // marginTop: 10,
+    // fontSize: 18,
+    // backgroundColor: "#F5F5F6",
+    // borderRadius: 10,
+    // paddingHorizontal: 15,
+    // paddingVertical: 10,
+    // width: "100%",
+    borderWidth: 2,
+    borderColor: '#66A5FF'
   },
   title: {
     fontSize: 32,
@@ -164,7 +193,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonClose: {
-      backgroundColor: 'red',
+    backgroundColor: "red",
   },
   buttonText: {
     color: "white",
@@ -176,32 +205,32 @@ const styles = StyleSheet.create({
     margin: "auto",
   },
   centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalView: {
-      width: 200,
-      margin: 0,
-      backgroundColor: '#51D93F',
-      borderRadius: 20,
-      padding: 5,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
+    width: 200,
+    margin: 0,
+    backgroundColor: "#51D93F",
+    borderRadius: 20,
+    padding: 5,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
-  modalText:{
+  modalText: {
     fontSize: 20,
-    color: 'white',
-    textAlign: 'center'
+    color: "white",
+    textAlign: "center",
   },
   overlay: {
-      flex: 1,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      justifyContent: 'center',
-      alignItems: 'center',
-  },
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  }
 });
 export default Add;
