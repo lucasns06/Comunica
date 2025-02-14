@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 const Separator = () => <View style={styles.separator} />;
 
 function Config() {
@@ -8,14 +8,25 @@ function Config() {
             <View style={styles.separator}></View>
             <Text style={styles.title}>Tema</Text>
             <View style={styles.containerButton}>
-                <Button title="Claro"> </Button>
-                <Button title="Escuro"> </Button>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.textoBotao}>Claro</Text>    
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.textoBotao}>Escuro</Text>    
+                </TouchableOpacity>
             </View>
+            <View style={styles.separator}></View>
             <Text style={styles.title}>Contatos</Text>
             <View style={styles.containerButton}>
-                <Button title="Adicionar"> </Button>
-                <Button title="Editar"> </Button>
-                <Button title="Deletar"> </Button>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.textoBotao}>Adicionar</Text>    
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.textoBotao}>Editar</Text>    
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.textoBotao}>Remover</Text>    
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -35,9 +46,11 @@ const styles = StyleSheet.create({
     },  
     button:{
         padding: 5,
-        backgroundColor: 'white',
-        borderWidth: 2,
-        width: 150,
+        backgroundColor: '#f1f1f1',
+        borderRadius: 10
+    },
+    textoBotao:{
+        fontSize: 28
     },
     gray:{
         backgroundColor: 'gray',
