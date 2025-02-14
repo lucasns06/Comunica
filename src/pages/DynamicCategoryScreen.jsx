@@ -140,18 +140,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 22,
   },
-  um: {
-    backgroundColor: "#7FAFF6",
-  },
-  dois: {
-    backgroundColor: "#F97D7D",
-  },
-  tres: {
-    backgroundColor: "#9D7FF6",
-  },
-  quatro: {
-    backgroundColor: "#4AE9A7",
-  },
   footer: {
     alignItems: "center",
     paddingVertical: 24,

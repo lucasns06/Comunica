@@ -32,7 +32,7 @@ function TabNavigator({ navigation }) {
           // backgroundColor: "#F1F1F1",
           backgroundColor: "#fff",
           height: 55,
-          boxShadow: "rgba(0, 0, 0, 0.1) 0px 10px 50px"
+          // boxShadow: "rgba(0, 0, 0, 0.1) 0px 10px 50px"
         },
         contentStyle: {
           backgroundColor: "#FFFFFF",

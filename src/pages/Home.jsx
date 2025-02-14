@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   FlatList,
+  ScrollView
 } from "react-native";
 import { useCategory } from "../CategoriesContext";
 
@@ -14,11 +15,12 @@ function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.container}>
         <FlatList
           data={categories}
           numColumns={2}
           keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.flatListContent}
           renderItem={({ item }) => (
             <TouchableOpacity
               style={[styles.categoria, item.cor]}
@@ -31,20 +33,22 @@ function Home({ navigation }) {
             </TouchableOpacity>
           )}
         />
-        <View style={styles.footer}>
-          <TouchableOpacity
-            style={styles.iconButton}
-            onPress={() => navigation.navigate("tts")}  >
-            <Image
-              source={require("../images/audio.png")}
-              style={styles.iconImage} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("help")} >
-            <Text style={styles.buttonText}>AJUDA</Text>
-          </TouchableOpacity>
-        </View>
+        {/* <View> */}
+          <View style={styles.footer}>
+            <TouchableOpacity
+              style={styles.iconButton}
+              onPress={() => navigation.navigate("tts")}  >
+              <Image
+                source={require("../images/audio.png")}
+                style={styles.iconImage} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("help")} >
+              <Text style={styles.buttonText}>AJUDA</Text>
+            </TouchableOpacity>
+          </View>
+        {/* </View> */}
       </View>
     </View>
   );
@@ -54,7 +58,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: "rgba(68, 162, 255, 0.05)",
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
+  },
+  flatListContent:{
     padding: 20,
   },
   categoria: {
@@ -79,26 +85,18 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 22,
   },
-  um: {
-    backgroundColor: "#7FAFF6",
-  },
-  dois: {
-    backgroundColor: "#F97D7D",
-  },
-  tres: {
-    backgroundColor: "#9D7FF6",
-  },
-  quatro: {
-    backgroundColor: "#4AE9A7",
-  },
   footer: {
-    marginVertical: "25%",
-    marginHorizontal: 10,
+    flex: 1,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "white",
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
     borderRadius: 14,
     boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
   },
@@ -107,7 +105,6 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
-    width: 128
   },
   buttonText: {
     color: "white",
@@ -118,7 +115,6 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#5DF991",
     borderRadius: 20,
-    width: 71
   },
   iconImage: {
     width: 50,
