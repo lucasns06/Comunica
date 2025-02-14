@@ -36,7 +36,7 @@ function DynamicCategoryScreen({ route }) {
       >
         <View style={styles.overlay}>
           <View style={styles.centeredView}>
-            <View style={styles.modalView}>
+            <View style={[styles.modalView, category.cor]}>
               {selectedItem && (
                 <>
                   <Text style={styles.textStyle}>{selectedItem.texto}</Text>
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
     width: 350,
     height: 350,
     margin: 0,
-    backgroundColor: 'gray',
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -165,6 +164,9 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
+  },
+  buttonClose:{
+    marginTop: 20
   },
   buttonText: {
     color: "white",

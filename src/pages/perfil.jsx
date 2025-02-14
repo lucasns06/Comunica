@@ -39,7 +39,7 @@ const Perfil = ({ navigation }) => {
       <View style={styles.containerTexto}>
         <Text style={styles.title}>Nome</Text>
         <Text style={styles.text}>{user.nome}</Text>
-        <Text style={styles.title}>Sexo</Text>
+        <Text style={styles.title}>Gênero</Text>
         <Text style={styles.text}>{user.sexo}</Text>
       </View>
       <TouchableOpacity
