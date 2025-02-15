@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Image, ActivityIndicator  } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image, ActivityIndicator } from "react-native";
 import { useUser } from "../UserContext";
 import * as ImagePicker from "expo-image-picker";
 
@@ -23,8 +23,8 @@ const Perfil = ({ navigation }) => {
   };
   if (!user) {
     return (
-      <View style={styles.container}>  
-      <ActivityIndicator size="large" color="#0000ff" />
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
       </View>
     );
   }
@@ -33,12 +33,13 @@ const Perfil = ({ navigation }) => {
       <View style={styles.topBackground}></View>
       <View style={styles.containerCenter}>
         <TouchableOpacity style={styles.perfil} onPress={pickImage}>
-          {image ? ( <Image source={{ uri: image }} style={styles.imagem} />) : ( <Image source={require("../images/photo.png")} style={styles.imagem} /> )}
+          {image ? (<Image source={{ uri: image }} style={styles.imagem} />) : (<Image source={require("../images/photo.png")} style={styles.imagem} />)}
         </TouchableOpacity>
       </View>
       <View style={styles.containerTexto}>
         <Text style={styles.title}>Nome</Text>
         <Text style={styles.text}>{user.nome}</Text>
+        <View style={styles.separator}></View>
         <Text style={styles.title}>Gênero</Text>
         <Text style={styles.text}>{user.sexo}</Text>
       </View>
@@ -52,6 +53,9 @@ const Perfil = ({ navigation }) => {
   );
 };
 const styles = StyleSheet.create({
+  separator: {
+    marginVertical: 10,
+  },
   container: {
     backgroundColor: "white",
     flex: 1,

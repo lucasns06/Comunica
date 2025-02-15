@@ -9,23 +9,23 @@ function Config() {
             <Text style={styles.title}>Tema</Text>
             <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.textoBotao}>Claro</Text>    
+                    <Text style={styles.textoBotao}>Claro</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.textoBotao}>Escuro</Text>    
+                    <Text style={styles.textoBotao}>Escuro</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.separator}></View>
             <Text style={styles.title}>Contatos</Text>
             <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.textoBotao}>Adicionar</Text>    
+                    <Text style={styles.textoBotao}>Adicionar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.textoBotao}>Editar</Text>    
+                    <Text style={styles.textoBotao}>Editar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.textoBotao}>Remover</Text>    
+                    <Text style={styles.textoBotao}>Remover</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -41,18 +41,18 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
     },
-    containerButton:{
+    containerButton: {
         gap: 16,
-    },  
-    button:{
+    },
+    button: {
         padding: 5,
         backgroundColor: '#f1f1f1',
         borderRadius: 10
     },
-    textoBotao:{
+    textoBotao: {
         fontSize: 28
     },
-    gray:{
+    gray: {
         backgroundColor: 'gray',
         color: 'white'
     },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         color: 'black',
         marginVertical: 10
     },
-    text:{
+    text: {
         fontSize: 24,
         textAlign: 'center'
     }
