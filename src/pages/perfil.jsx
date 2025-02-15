@@ -1,26 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image, ActivityIndicator } from "react-native";
 import { useUser } from "../UserContext";
 import * as ImagePicker from "expo-image-picker";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Perfil = ({ navigation }) => {
   const [image, setImage] = useState();
   const { user } = useUser();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadImageData = async () => {
+      try {
+        const imageData = await AsyncStorage.getItem('imageData');
+        if (imageData) {
+          setImage(JSON.parse(imageData));
+        }
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadImageData();
+  }, []);
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images", "videos"],
-      allowsEditing: true,
-      aspect: [3, 3],
-      quality: 1,
-    });
+    let result = await ImagePicker.launchImageLibraryAsync
+      ({
+        mediaTypes: ["images", "videos"],
+        allowsEditing: true,
+        aspect: [3, 3],
+        quality: 1,
+      });
 
     console.log(result);
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      const newImage = result.assets[0].uri 
+      setImage(newImage);
+      await AsyncStorage.setItem('imageData', JSON.stringify(newImage));
     }
   };
+
+  if (isLoading) {
+    return null;
+  }
+
   if (!user) {
     return (
       <View style={styles.container}>
@@ -28,6 +55,7 @@ const Perfil = ({ navigation }) => {
       </View>
     );
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.topBackground}></View>
