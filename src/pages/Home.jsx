@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -6,20 +6,62 @@ import {
   TouchableOpacity,
   View,
   FlatList,
-  ScrollView
+  Modal,
+  Pressable
 } from "react-native";
+import Feather from "@expo/vector-icons/Feather";
 import { useCategory } from "../CategoriesContext";
 
 function Home({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(false);
   const { categories } = useCategory();
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
 
   return (
     <View style={styles.container}>
-      <View style={styles.container}>
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.overlay}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <TouchableOpacity
+                style={styles.buttonModal}
+                onPress={() => [setModalVisible(!modalVisible), navigation.navigate("add")]} >
+                <Text style={styles.buttonText}>Adicionar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonModal}
+                onPress={() => navigation.navigate("")} >
+                <Text style={styles.buttonText}>Editar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonModal}
+                onPress={() => navigation.navigate("")} >
+                <Text style={styles.buttonText}>Remover</Text>
+              </TouchableOpacity>
+            </View>
+            <Pressable
+              style={styles.buttonModal}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.buttonText}>Fechar</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+      <View style={styles.container2}>
         <FlatList
           data={categories}
           numColumns={2}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.id}
           contentContainerStyle={styles.flatListContent}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -33,23 +75,30 @@ function Home({ navigation }) {
             </TouchableOpacity>
           )}
         />
-        {/* <View> */}
-          <View style={styles.footer}>
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={() => navigation.navigate("tts")}  >
-              <Image
-                source={require("../images/audio.png")}
-                style={styles.iconImage} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate("help")} >
-              <Text style={styles.buttonText}>AJUDA</Text>
-            </TouchableOpacity>
-          </View>
-        {/* </View> */}
       </View>
+        <View style={styles.footer}>
+          <TouchableOpacity
+            style={styles.iconButton}
+            onPress={() => navigation.navigate("tts")}  >
+            <Image
+              source={require("../images/audio.png")}
+              style={styles.iconImage} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("help")} >
+            <Text style={styles.buttonText}>AJUDA</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonOpenModal}
+            onPress={() => openModal()} >
+            <Feather
+              name="edit"
+              size={28}
+              color={"white"}
+            />
+          </TouchableOpacity>
+        </View>
     </View>
   );
 }
@@ -57,10 +106,12 @@ function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "rgba(68, 162, 255, 0.05)",
-    // backgroundColor: "#fff",
+    backgroundColor: "#fff",
   },
-  flatListContent:{
+  container2: {
+    marginBottom: 72
+  },
+  flatListContent: {
     padding: 20,
   },
   categoria: {
@@ -110,6 +161,13 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+    textAlign: "center"
+  },
+  buttonOpenModal: {
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    backgroundColor: "blue",
   },
   iconButton: {
     padding: 10,
@@ -120,6 +178,37 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalView: {
+    width: 350,
+    height: 350,
+    margin: 0,
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    backgroundColor: "#fff"
+  },
+  buttonModal:{
+    width: 120,
+    paddingVertical: 10,
+    borderRadius: 10,
+    backgroundColor: "blue",
+    marginVertical: 5
+  }
 });
 
 export default Home;

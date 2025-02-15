@@ -66,7 +66,7 @@ function TabNavigator({ navigation }) {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Personalizar"
         component={Edit}
         options={{
@@ -83,7 +83,7 @@ function TabNavigator({ navigation }) {
           headerTintColor: "#4D4D58",
           headerTitleStyle: styles.headerTitleStyle,
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Perfil"
         component={Perfil}

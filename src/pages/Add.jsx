@@ -15,7 +15,7 @@ import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 function Add() {
-  const { categories } = useCategory();
+  const { categories, setCategories } = useCategory();
   const [texto, setTextolocal] = useState("");
   const [warning, setWarning] = useState("");
   const [image, setImage] = useState();
@@ -42,15 +42,39 @@ function Add() {
       nomeValido = false;
     }
     if (nomeValido) {
-      categories.push[
-        {
-          imagem: require('../images/error.png'),
-          texto: texto,
-          cor: styles.dois
-        }
-      ]
+      salvarCategoria();
       openModal();
     }
+  }
+  function salvarCategoria() {
+    const novaCategoria = {
+      id: 10,
+      imagem: "",
+      texto: texto,
+      cor: styles.dois,
+      imagens: [
+
+      ]
+    };
+
+    setCategories(prevCategories => [...prevCategories, novaCategoria]);
+  }
+
+  function salvarVariasCategoria() {
+    for (let i = 10; i <= 15; i++) {
+      const novaCategoria = {
+        id: i,
+        imagem: "",
+        texto: texto + "" + i,
+        cor: styles.dois,
+        imagens: [
+
+        ]
+      };
+
+      setCategories(prevCategories => [...prevCategories, novaCategoria]);
+    }
+
   }
 
   const pickImage = async () => {
@@ -109,10 +133,10 @@ function Add() {
           </TouchableOpacity>
           <Text style={styles.label}>Nome</Text>
           <TextInput
-            style={[styles.input, isFocused ? styles.focusedInput : ""]}
+            style={[styles.input, !isFocused ? styles.focusedInput : ""]}
             placeholder="Nome da categoria"
             onFocus={() => [clear(), handleFocus()]}
-            onblur={() => toggleFocus()}
+            onBlur={() => toggleFocus()}
             value={texto}
             onChangeText={setTextolocal}
           />
@@ -131,6 +155,12 @@ function Add() {
             onPress={() => verificar()}
           >
             <Text style={styles.buttonText}>Salvar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, styles.dois]}
+            onPress={() => salvarVariasCategoria()}
+          >
+            <Text style={styles.buttonText}>TESTE</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -162,6 +192,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 10,
+    borderWidth: 2,
+    borderColor: 'white'
   },
   focusedInput: {
     // marginTop: 10,
