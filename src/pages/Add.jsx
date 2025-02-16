@@ -10,7 +10,7 @@ import {
   Pressable,
 } from "react-native";
 import { useCategory } from "../CategoriesContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";

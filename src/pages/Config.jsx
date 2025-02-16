@@ -1,18 +1,23 @@
-import React from "react";
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
-const Separator = () => <View style={styles.separator} />;
+import React, { useState } from "react";
+import { Switch, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 function Config() {
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     return (
         <View style={styles.container}>
             <View style={styles.separator}></View>
             <Text style={styles.title}>Tema</Text>
             <View style={styles.containerButton}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.textoBotao}>Claro</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.textoBotao}>Escuro</Text>
+                <TouchableOpacity onPress={toggleSwitch} className="flex-row items-center justify-between bg-gray-200 rounded-xl px-2">
+                    <Text className="text-2xl">Modo Escuro</Text>
+                    <Switch
+                        trackColor={{ false: '#767577', true: '#81b0ff' }}
+                        thumbColor={isEnabled ? '#fff' : '#f4f3f4'}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={toggleSwitch}
+                        value={isEnabled}
+                    />
                 </TouchableOpacity>
             </View>
             <View style={styles.separator}></View>
