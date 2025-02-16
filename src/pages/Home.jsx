@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import { useCategory } from "../CategoriesContext";
+import * as SQLite from 'expo-sqlite';
+
 
 function Home({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -19,6 +21,26 @@ function Home({ navigation }) {
   const openModal = () => {
     setModalVisible(true);
   };
+
+  useEffect(() => {
+    async function setup() {
+      const db = await SQLite.openDatabaseAsync('databaseApp');
+
+      // await db.execAsync(`
+      //   PRAGMA journal_mode = WAL;
+      //   CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY NOT NULL, value TEXT NOT NULL, intValue INTEGER);
+      //   INSERT INTO test (value, intValue) VALUES ('test1', 123);
+      //   INSERT INTO test (value, intValue) VALUES ('test2', 456);
+      //   INSERT INTO test (value, intValue) VALUES ('test3', 789);
+      //   `);
+
+      const allRows = await db.getAllAsync('SELECT * FROM test');
+      for (const row of allRows) {
+        console.log(row.id, row.value, row.intValue);
+      }
+    }
+    setup()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -65,6 +87,7 @@ function Home({ navigation }) {
           contentContainerStyle={styles.flatListContent}
           renderItem={({ item }) => (
             <TouchableOpacity
+              className="shadow-xl"
               style={[styles.categoria, item.cor]}
               onPress={() =>
                 navigation.navigate("CategoryScreen", { categoryId: item.id })
@@ -76,29 +99,32 @@ function Home({ navigation }) {
           )}
         />
       </View>
-        <View style={styles.footer}>
-          <TouchableOpacity
-            style={styles.iconButton}
-            onPress={() => navigation.navigate("tts")}  >
-            <Image
-              source={require("../images/audio.png")}
-              style={styles.iconImage} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("help")} >
-            <Text style={styles.buttonText}>AJUDA</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonOpenModal}
-            onPress={() => openModal()} >
-            <Feather
-              name="edit"
-              size={28}
-              color={"white"}
-            />
-          </TouchableOpacity>
-        </View>
+      <View style={styles.footer}>
+        <TouchableOpacity
+          className="shadow-2xl"
+          style={styles.iconButton}
+          onPress={() => navigation.navigate("tts")}  >
+          <Image
+            source={require("../images/audio.png")}
+            style={styles.iconImage} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="shadow-2xl"
+          style={styles.button}
+          onPress={() => navigation.navigate("help")} >
+          <Text style={styles.buttonText}>AJUDA</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="shadow-2xl"
+          style={styles.buttonOpenModal}
+          onPress={() => openModal()} >
+          <Feather
+            name="edit"
+            size={28}
+            color={"white"}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -121,10 +147,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
-    elevation: 5,
   },
   imagem: {
     width: 80,
@@ -138,6 +160,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
+    backgroundColor: "white",
     position: "absolute",
     bottom: 0,
     left: 0,
@@ -145,11 +168,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "white",
     paddingVertical: 10,
     paddingHorizontal: 30,
     borderRadius: 14,
-    boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
   },
   button: {
     backgroundColor: "#FF3763",
@@ -202,7 +223,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: "#fff"
   },
-  buttonModal:{
+  buttonModal: {
     width: 120,
     paddingVertical: 10,
     borderRadius: 10,

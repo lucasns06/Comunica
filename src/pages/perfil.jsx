@@ -38,7 +38,7 @@ const Perfil = ({ navigation }) => {
     console.log(result);
 
     if (!result.canceled) {
-      const newImage = result.assets[0].uri 
+      const newImage = result.assets[0].uri
       setImage(newImage);
       await AsyncStorage.setItem('imageData', JSON.stringify(newImage));
     }
@@ -60,18 +60,23 @@ const Perfil = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.topBackground}></View>
       <View style={styles.containerCenter}>
-        <TouchableOpacity style={styles.perfil} onPress={pickImage}>
+        <TouchableOpacity
+          className="shadow-xl"
+          style={styles.perfil}
+          onPress={pickImage}
+        >
           {image ? (<Image source={{ uri: image }} style={styles.imagem} />) : (<Image source={require("../images/photo.png")} style={styles.imagem} />)}
         </TouchableOpacity>
       </View>
       <View style={styles.containerTexto}>
         <Text style={styles.title}>Nome</Text>
         <Text style={styles.text}>{user.nome}</Text>
-        <View style={styles.separator}></View>
-        <Text style={styles.title}>Gênero</Text>
-        <Text style={styles.text}>{user.sexo}</Text>
+        {/* <View style={styles.separator}></View>
+        <Text style={styles.title}>Sexo</Text>
+        <Text style={styles.text}>{user.sexo}</Text> */}
       </View>
       <TouchableOpacity
+        className="shadow-2xl"
         style={[styles.button, styles.containerPerfil]}
         onPress={() => navigation.navigate("login")}
       >

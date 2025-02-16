@@ -16,12 +16,12 @@ import {
 import LottieView from "lottie-react-native";
 import { useUser } from "../UserContext";
 
-function Login({ navigation }) {  
-  const { setUser } = useUser(); 
-  const [sexo, setSexoLocal] = useState("");
+function Login({ navigation }) {
+  const { setUser } = useUser();
+  // const [sexo, setSexoLocal] = useState("");
   const [nome, setNomeLocal] = useState("");
   const [erro, setErro] = useState("");
-  const [erro2, setErro2] = useState("");
+  // const [erro2, setErro2] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
@@ -31,6 +31,7 @@ function Login({ navigation }) {
   const handleBlur = () => {
     setIsFocused(false);
   };
+
   function clearWarning(opcao) {
     if (opcao == "erro1") {
       setErro("");
@@ -41,47 +42,48 @@ function Login({ navigation }) {
   }
   function verificar() {
     let nomeValido = true;
-    let sexoValido = true;
+    // let sexoValido = true;
 
     if (!nome.trim()) {
       setErro("Por favor digite um nome valido!");
       nomeValido = false;
     }
 
-    if (!sexo) {
-      setErro2("Por favor Selecione um sexo!");
-      sexoValido = false;
-    }
+    // if (!sexo) {
+    //   setErro2("Por favor Selecione um sexo!");
+    //   sexoValido = false;
+    // }
 
-    if (nomeValido && sexoValido) {
-      setUser({ nome, sexo }); 
+    // if (nomeValido && sexoValido) {
+    //   setUser({ nome, sexo }); 
+    //   navigation.navigate("home");
+    // }
+    if (nomeValido) {
+      setUser({ nome });
       navigation.navigate("home");
     }
   }
   return (
-    <SafeAreaView>
-      <ScrollView style={styles.scrollview}>
-        <View style={styles.container}>
-          <LottieView
-            source={require("../images/gifs/Gif.json")} 
-            autoPlay
-            loop
-            style={styles.logo}
-          />
-          <Text style={styles.title}>Bem-Vindo!</Text>
-          <Text style={styles.label}>Digite seu nome</Text>
-          <TextInput
-            style={[styles.input, isFocused && styles.focusedInput]}
-            placeholder="Nome"
-            value={nome}
-            onChangeText={setNomeLocal}
-            onPress={() => clearWarning("erro1")}        
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          />
-
-          <Text style={styles.warning}>{erro}</Text>
-
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#3387FF" translucent />
+      <View style={styles.center}>
+        <LottieView
+          source={require("../images/gifs/Gif.json")}
+          autoPlay
+          loop
+          style={styles.logo}
+        />
+        <Text style={styles.title}>Bem-Vindo!</Text>
+        <Text style={styles.label}>Digite seu nome</Text>
+        <TextInput
+          className="px-2 py-4 text-black font-psemibold text-2xl bg-white rounded-2xl w-full border-2 border-gray-200 focus:border-sky-400"
+          placeholder="Nome"
+          value={nome}
+          onChangeText={setNomeLocal}
+          onPress={() => clearWarning("erro1")}
+        />
+        <Text style={styles.warning}>{erro}</Text>
+        {/* 
           <Text style={styles.label}>Selecione seu sexo</Text>
           <Picker
             style={styles.picker}
@@ -95,31 +97,28 @@ function Login({ navigation }) {
             <Picker.Item label="Masculino" value="Masculino" />
             <Picker.Item label="Feminino" value="Feminino" />
           </Picker>
-          <Text style={styles.warning}>{erro2}</Text>
-          <View>
-            <TouchableOpacity
-              style={styles.button}
-              activeOpacity={0.7}
-              onPress={() => verificar()}
-            >
-              <Text style={styles.buttonText}>ENTRAR</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
+          <Text style={styles.warning}>{erro2}</Text> */}
+        <TouchableOpacity
+          className="w-full px-2 py-4 rounded-2xl shadow-2xl"
+          style={styles.button}
+          activeOpacity={0.7}
+          onPress={() => verificar()}
+        >
+          <Text style={styles.buttonText}>ENTRAR</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollview: {
-    marginTop: 20,
+  center: {
+    justifyContent: "center",
   },
   container: {
-    margin: 20,
+    marginHorizontal: 20,
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
   },
   warning: {
     color: "red",
@@ -138,52 +137,27 @@ const styles = StyleSheet.create({
   },
   label: {
     marginTop: 30,
+    marginBottom: 10,
     color: "black",
     fontSize: 22,
   },
-  input: {
-    marginTop: 10,
-    fontSize: 18,
-    backgroundColor: "#F5F5F6",
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    width: "100%",
-    borderWidth: 2,
-    borderColor: '#fff'
-  },
-  focusedInput:{
-    marginTop: 10,
-    fontSize: 18,
-    backgroundColor: "#F5F5F6",
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    width: "100%",
-    borderWidth: 2,
-    borderColor: '#66A5FF'
-  },
   picker: {
-    marginTop: 10,
     fontSize: 18,
-    backgroundColor: "#F5F5F6",
+    backgroundColor: "#fff",
     borderRadius: 10,
     borderWidth: 2,
     width: "97%",
+    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
   },
   button: {
     marginTop: 40,
     backgroundColor: "#66A5FF",
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 10,
-    alignItems: "center",
-    width: "80%",
   },
   buttonText: {
     color: "white",
     fontSize: 24,
     fontWeight: "bold",
+    textAlign: "center"
   },
 });
 
