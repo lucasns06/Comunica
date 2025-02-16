@@ -25,7 +25,7 @@ const Tts = () => {
     return (
         <View style={styles.container}>
             <LottieView
-                source={require('../images/gifs/VoiceCommand.json')}
+                source={require('../../assets/animations/VoiceCommand.json')}
                 autoPlay={isSpeaking}
                 loop={isSpeaking}
                 style={styles.logo}

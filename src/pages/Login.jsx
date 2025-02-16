@@ -68,7 +68,7 @@ function Login({ navigation }) {
       <StatusBar barStyle="light-content" backgroundColor="#3387FF" translucent />
       <View style={styles.center}>
         <LottieView
-          source={require("../images/gifs/Gif.json")}
+          source={require("../../assets/animations/Gif.json")}
           autoPlay
           loop
           style={styles.logo}

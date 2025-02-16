@@ -10,7 +10,7 @@ import {
   Pressable,
 } from "react-native";
 import { useCategory } from "../CategoriesContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -18,7 +18,7 @@ function Add() {
   const { categories, setCategories } = useCategory();
   const [texto, setTextolocal] = useState("");
   const [warning, setWarning] = useState("");
-  const [image, setImage] = useState();
+  const [imagens, setImagens] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const handleFocus = () => {
@@ -49,15 +49,17 @@ function Add() {
   function salvarCategoria() {
     const novaCategoria = {
       id: 10,
-      imagem: "",
+      imagem: imagens.length > 0 ? imagens[0] : null,
       texto: texto,
-      cor: styles.dois,
+      cor: styles.um,
       imagens: [
 
       ]
     };
 
     setCategories(prevCategories => [...prevCategories, novaCategoria]);
+
+    // setImagens([]);
   }
 
   function salvarVariasCategoria() {
@@ -88,9 +90,10 @@ function Add() {
     console.log(result);
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      setImagens((prevImagens) => [...prevImagens, result.assets[0].uri]);
     }
   };
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ScrollView>
@@ -116,8 +119,8 @@ function Add() {
           </View>
         </Modal>
         <View style={styles.container}>
-          {image ? (
-            <Image source={{ uri: image }} style={styles.imagem} />
+          {imagens.length > 0 ?(
+            <Image source={{ uri: imagens[0] }} style={styles.imagem} />
           ) : (
             <Image
               source={require("../images/personalizar/image.png")}

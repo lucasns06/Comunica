@@ -11,8 +11,6 @@ import {
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import { useCategory } from "../CategoriesContext";
-import * as SQLite from 'expo-sqlite';
-
 
 function Home({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,26 +19,6 @@ function Home({ navigation }) {
   const openModal = () => {
     setModalVisible(true);
   };
-
-  useEffect(() => {
-    async function setup() {
-      const db = await SQLite.openDatabaseAsync('databaseApp');
-
-      // await db.execAsync(`
-      //   PRAGMA journal_mode = WAL;
-      //   CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY NOT NULL, value TEXT NOT NULL, intValue INTEGER);
-      //   INSERT INTO test (value, intValue) VALUES ('test1', 123);
-      //   INSERT INTO test (value, intValue) VALUES ('test2', 456);
-      //   INSERT INTO test (value, intValue) VALUES ('test3', 789);
-      //   `);
-
-      const allRows = await db.getAllAsync('SELECT * FROM test');
-      for (const row of allRows) {
-        console.log(row.id, row.value, row.intValue);
-      }
-    }
-    setup()
-  }, [])
 
   return (
     <View style={styles.container}>
@@ -93,7 +71,14 @@ function Home({ navigation }) {
                 navigation.navigate("CategoryScreen", { categoryId: item.id })
               }
             >
-              <Image source={item.imagem} style={styles.imagem} />
+              <Image
+                source={
+                  typeof item.imagem === "string"
+                    ? { uri: item.imagem }
+                    : item.imagem || require("../images/personalizar/image.png")
+                }
+                style={styles.imagem}
+              />
               <Text style={styles.texto}>{item.texto}</Text>
             </TouchableOpacity>
           )}
